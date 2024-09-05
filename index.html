@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <title>Official teams page - Dropbox</title>
+
+    <style>
+      html,
+      body {
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /*****HERO***************/
+
+      .section-hero {
+        color: white;
+      }
+
+      .hero-text {
+        background-color: #2c2a2a;
+        padding: 70px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .hero-text h1 {
+        font-size: 42px;
+      }
+      .hero-link {
+        color: white;
+        text-decoration-color: #7a7474;
+        text-underline-offset: 5px;
+        font-weight: 500;
+        text-decoration-thickness: 0.5px;
+      }
+      .hero-link:hover {
+        text-decoration-color: white !important;
+      }
+      .hero-link ion-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .hero-link:hover ion-icon {
+        transform: translateX(5px);
+      }
+      .hero-video {
+        width: 65%;
+        padding: 60px;
+        display: flex;
+        background-color: #1e1919;
+      }
+      #video {
+        width: 100%;
+        height: auto;
+      }
+
+      /******************************/
+      .bg-custom {
+        background-color: #f7f5f2;
+      }
+      .fsize-globe {
+        font-size: 20px;
+      }
+      .line-underline {
+        text-decoration: underline;
+        text-decoration-style: solid;
+        text-underline-offset: 4px;
+        text-decoration-color: #00000082;
+      }
+      .dashed-underline {
+        text-decoration: underline;
+        text-decoration-style: dashed;
+        text-underline-offset: 4px;
+        color: #7a7474;
+      }
+      .bg-custom-card1 {
+        background-color: #faf9f7;
+      }
+
+      .bg-custom-card3 {
+        background-color: #f2eee8;
+      }
+      .bg-card2-header {
+        background-color: #b4dc19;
+      }
+      .card-header-custom {
+        padding: 4px !important;
+        border-radius: 12px 12px 0 0 !important;
+      }
+
+      .space {
+        margin-right: 0.3rem;
+        margin-left: 1rem;
+      }
+
+      .tagline {
+        text-align: center;
+        background-color: #f7f5f2;
+      }
+
+      .form-check {
+        display: inline-block;
+        padding: 10px;
+      }
+      .bg-input:checked {
+        background-color: #5f5b5b;
+        border-color: black;
+      }
+      .form-check-input {
+        width: 1.2rem;
+        height: 1.2rem;
+        border: 1px solid black;
+        cursor: pointer;
+      }
+
+      .bg-footer {
+        background-color: #000000;
+        color: white;
+      }
+      .footer-hvr:hover {
+        text-decoration: underline !important;
+        color: white;
+        text-decoration-thickness: 1px !important ;
+      }
+      .custom-hr {
+        width: 10%;
+      }
+      /*********carousel section***************/
+      .section-carousel {
+        color: #f7f5f2;
+        background-color: #242121;
+        padding: 90px;
+        position: relative;
+      }
+      .carousel {
+        position: relative;
+        max-width: 1200px;
+        overflow: visible;
+        margin: auto;
+      }
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+      }
+      .carousel-inner {
+        width: 1200px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+      }
+      .carousel-1 img {
+        background-color: #b4dc19;
+        padding: 24px;
+        height: 300px;
+        width: 300px;
+      }
+      .testimonial-text {
+        font-size: 17px;
+      }
+      .testimonial-position {
+        color: #7a7474;
+      }
+
+      .carousel-control {
+        cursor: pointer;
+        position: absolute;
+        border: none;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .prev {
+        left: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .next {
+        right: 0;
+        top: 50%;
+        transform: translate(50%, -50%);
+      }
+      /*****************/
+      .section-card {
+        background-color: #242121;
+        padding: 80px;
+        border: none;
+      }
+      .card-decor {
+        background-color: #2c2a2a;
+      }
+      .cardbtn {
+        background-color: #3984ff;
+        border: 1px solid #3984ff;
+        border-radius: 20px;
+        color: #1e1919;
+        font-weight: 600;
+        font-size: 17px;
+        transition: all 0.3s;
+      }
+      .cardbtn:hover {
+        color: #1e1919;
+        background-color: #508ff4;
+        cursor: pointer;
+      }
+      .cardbtn ion-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .cardbtn:hover ion-icon {
+        transform: translateX(5px);
+      }
+      .wht {
+        color: white;
+      }
+      .fontsizelastag {
+        font-size: 45px;
+        padding-left: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar p-3 navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold fs-4" href="#">
+            <img src="/dropbox-1.svg" alt="Logo" width="40" height="34" />
+            Dropbox
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item d-flex align-items-center">
+                <ion-icon
+                  class="fw-bold fsize-globe"
+                  name="globe-outline"
+                ></ion-icon>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Sign up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link me-2" href="#">Log in</a>
+              </li>
+              <li class="nav-item">
+                <button type="button" class="btn btn-primary fw-bold">
+                  Get Started
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="section-hero">
+      <div class="container-fluid mt-5">
+        <div class="row">
+          <div class="col-md-4 hero-text">
+            <h1 class="hero-heading">
+              Everything you and your business need to work efficiently, all in
+              one place
+            </h1>
+            <p class="hero-para">
+              Collaborate seamlessly and deliver work faster from anywhere with
+              Dropbox. Securely store your content, edit PDFs, share videos,
+              sign documents and track file engagement—without leaving Dropbox.
+            </p>
+            <div>
+              <a
+                href="#"
+                class="btn cardbtn d-inline-flex align-items-center gap-4 p-4"
+                >Try it for free
+                <ion-icon name="arrow-forward-outline"></ion-icon
+              ></a>
+            </div>
+            <div>
+              <a
+                href="#"
+                class="hero-link d-inline-flex align-items-center gap-2"
+                >or purchase now
+                <ion-icon name="arrow-forward-outline"></ion-icon
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-8 hero-video">
+            <video
+              id="video"
+              src="/dropboxvideo.mp4"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tagline">
+      <div class="container-fluid row-1 tagline h-200 p-5 fw-medium text-dark">
+        <h2 class="mb-4">All the tools you need in one plan</h2>
+        <p>
+          Store and share files. Sign and send documents. Record screens and
+          comment. All in one place.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-pricing">
+      <div class="container mt-5 mb-5">
+        <div class="form-check">
+          <input
+            class="form-check-input bg-input"
+            type="radio"
+            id="option1"
+            value="BilledMonthly"
+          />
+          <label class="form-check-label me-3" for="BilledMonthly">
+            Billed Monthly
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input bg-input"
+            type="radio"
+            id="option2"
+            value="BilledYearly"
+          />
+          <label class="form-check-label" for="BilledYearly">
+            Billed Yearly
+          </label>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <!--card 1-->
+        <div class="col-sm-3 mb-3 mb-sm-0">
+          <div class="card h-100 bg-custom-card1 border-0">
+            <div class="card-body">
+              <p>For professionals</p>
+              <h5 class="card-title fs-3">Essentials</h5>
+              <h5 class="card-title fs-4">$19.99 / month</h5>
+              <a
+                href="#"
+                class="d-flex justify-content-between align-items-center btn btn-primary fw-medium mt-3 w-100"
+              >
+                Try for free
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center pt-4 pb-4 fw-medium line-underline"
+                style="color: #000000"
+              >
+                or buy now
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </a>
+
+              <ul class="list-unstyled lh-lg">
+                <li><ion-icon name="person-outline"></ion-icon> 1 user</li>
+                <li>
+                  <ion-icon name="cloud-outline"></ion-icon>
+                  <strong>3TB</strong> of storage
+                </li>
+                <li>
+                  <ion-icon name="paper-plane-outline"></ion-icon> Transfer
+                  files up to <strong>100GB</strong>
+                </li>
+                <li>
+                  <ion-icon name="timer-outline"></ion-icon> 180 days to restore
+                  deleted files
+                </li>
+                <li>
+                  <ion-icon name="document-outline"></ion-icon> Track file
+                  engagement
+                </li>
+                <li>
+                  <ion-icon name="pencil-outline"></ion-icon> Unlimited
+                  signature requests
+                </li>
+                <li><ion-icon name="create-outline"></ion-icon> PDF editing</li>
+                <li>
+                  <ion-icon name="videocam-outline"></ion-icon> Record, review,
+                  and edit video
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--card 2-->
+        <div class="col-sm-3 mb-3 mb-sm-0">
+          <div class="card h-100 bg-custom border-0">
+            <div
+              class="card-header card-header-custom border-0 bg-card2-header fw-medium d-flex align-items-center"
+            >
+              <ion-icon class="space" name="star-outline"></ion-icon> Best value
+            </div>
+            <div class="card-body">
+              <p>For smaller teams</p>
+              <h5 class="card-title fs-3">Business</h5>
+              <h5 class="card-title fs-4">$18 / user / month</h5>
+              <a
+                href="#"
+                class="d-flex justify-content-between align-items-center btn btn-primary fw-medium mt-3 w-100"
+              >
+                Try for free
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center pt-4 pb-4 line-underline fw-medium"
+                style="color: #000000"
+              >
+                or buy now
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </a>
+
+              <ul class="list-unstyled lh-lg">
+                <li><ion-icon name="person-outline"></ion-icon> 3+ user</li>
+                <li class="dashed-underline">
+                  <ion-icon name="cloud-outline"></ion-icon> Starts at
+                  <strong>9TB</strong> for the team
+                </li>
+                <li>
+                  <ion-icon name="paper-plane-outline"></ion-icon> Transfer
+                  files up to <strong>100GB</strong>
+                </li>
+                <li>
+                  <ion-icon name="timer-outline"></ion-icon> 180 days to restore
+                  deleted files
+                </li>
+                <li>
+                  <ion-icon name="document-outline"></ion-icon> Track file
+                  engagement
+                </li>
+                <li>
+                  <ion-icon name="pencil-outline"></ion-icon> Unlimited
+                  signature requests
+                </li>
+                <li><ion-icon name="create-outline"></ion-icon> PDF editing</li>
+                <li>
+                  <ion-icon name="videocam-outline"></ion-icon> Record, review,
+                  and edit video
+                </li>
+                <li>
+                  <ion-icon name="people-outline"></ion-icon> Set up admins
+                </li>
+                <li>
+                  <ion-icon name="shield-checkmark-outline"></ion-icon> Know
+                  what content is shared
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--card 3-->
+        <div class="col-sm-3 mb-3 mb-sm-0">
+          <div class="card h-100 bg-custom-card3 border-0">
+            <div class="card-body">
+              <p>For large teams</p>
+              <h5 class="card-title fs-3">Business Plus</h5>
+              <h5 class="card-title fs-4">$30 /user / month</h5>
+              <a
+                href="#"
+                class="d-flex justify-content-between align-items-center btn btn-primary fw-medium mt-3 w-100"
+              >
+                Try for free
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center pt-4 pb-4 line-underline fw-medium"
+                style="color: #000000"
+              >
+                or buy now
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </a>
+
+              <ul class="list-unstyled lh-lg">
+                <li><ion-icon name="person-outline"></ion-icon> 3+ user</li>
+                <li class="dashed-underline">
+                  <ion-icon name="cloud-outline"></ion-icon> Starts at
+                  <strong>15TB</strong> for the team
+                </li>
+                <li>
+                  <ion-icon name="paper-plane-outline"></ion-icon> Transfer
+                  files up to <strong>250GB</strong>
+                </li>
+                <li>
+                  <ion-icon name="timer-outline"></ion-icon> 1 year to restore
+                  deleted files
+                </li>
+                <li>
+                  <ion-icon name="document-outline"></ion-icon> Track file
+                  engagement
+                </li>
+                <li>
+                  <ion-icon name="pencil-outline"></ion-icon> Unlimited
+                  signature requests
+                </li>
+                <li><ion-icon name="create-outline"></ion-icon> PDF editing</li>
+                <li>
+                  <ion-icon name="videocam-outline"></ion-icon> Record, review,
+                  and edit video
+                </li>
+                <li>
+                  <ion-icon name="people-outline"></ion-icon> Set up tiered
+                  admin roles
+                </li>
+                <li>
+                  <ion-icon name="shield-checkmark-outline"></ion-icon>
+                  Suspicious activity alerts
+                </li>
+                <li>
+                  <ion-icon name="analytics-outline"></ion-icon>
+                  Compliance tracking
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-features pt-5 mb-0">
+      <div class="container-fluid bg-custom text-dark p-3">
+        <h2 class="h2 text-center fs-1 fw-medium text-break mb-5">
+          Dropbox supports you and your business at every stage
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-md-2">
+            <div class="mb-3">
+              <img
+                src="/ProtectFilesLight.svg"
+                alt="Logo"
+                width="100"
+                height="110"
+              />
+            </div>
+            <h4>Store and protect your files</h4>
+            <p>
+              Starting at 3 TB of team storage and backup, with security
+              features like file recovery, password protection, watermarking,
+              and viewer history.
+            </p>
+          </div>
+          <div class="col-md-2">
+            <div class="mb-3">
+              <img
+                src="/SharedContentLight.svg"
+                alt="Logo"
+                width="100"
+                height="110"
+              />
+            </div>
+            <h4>Share your content</h4>
+            <p>
+              Forget email attachments. With Dropbox, you can deliver large
+              files and share trackable links with real-time document analytics
+              to help make data-driven decisions.
+            </p>
+          </div>
+          <div class="col-md-2">
+            <div class="mb-3">
+              <img
+                src="/CollaborateLight.svg"
+                alt="Logo"
+                width="100"
+                height="110"
+              />
+            </div>
+            <h4>Collaborate on your work</h4>
+            <p>
+              Reduce meetings with Capture and use Replay to streamline feedback
+              and approval processes on video projects.
+            </p>
+          </div>
+
+          <div class="col-md-2">
+            <div class="mb-3">
+              <img
+                src="/ManageBusinessLight.svg"
+                alt="Logo"
+                width="100"
+                height="110"
+              />
+            </div>
+            <h4>Manage your business</h4>
+            <p>
+              Make it easy to prepare, send, and eSign your most important
+              contracts. Automate manual processes with tools like eSignature
+              templates, which let you reuse documents in seconds.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-carousel">
+      <div class="container-fluid">
+        <div class="carousel">
+          <div class="carousel-inner">
+            <div class="row">
+              <div class="carousel-1 item active">
+                <div class="col-md-4">
+                  <img src="/carousels/designit-logo.svg" alt="design it" />
+                </div>
+                <div class="col-md-8">
+                  <blockquote class="testimonial">
+                    <p class="testimonial-text">
+                      "Our team is constantly working across different
+                      countries, time zones and offices. A lot of solutions can
+                      accommodate that now, but none make it as seamless as
+                      Dropbox and Dropbox Paper".
+                    </p>
+                    <a href="#">View case studies </a>
+                    <p class="testimonial-author">Morten Thomsen</p>
+                    <p class="testimonial-position">Global IT Lead</p>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control prev" onclick="moveSlide(-1)">
+              <ion-icon class="icon" name="arrow-back-outline"></ion-icon>
+            </button>
+            <button class="carousel-control next" onclick="moveSlide(1)">
+              <ion-icon class="icon" name="arrow-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card card-decor">
+              <img
+                src="/teams-ui-1272x424.png"
+                class="card-img-top"
+                alt="Card 1"
+              />
+              <div class="card-body p-5">
+                <h5 class="card-title wht fs-3 mb-5 mt-2 fw-normal">
+                  For work
+                </h5>
+                <p class="card-text wht fs-6 mb-5">
+                  Work efficiently with teammates and clients, stay in sync on
+                  projects, and keep company data safe — all in one place.
+                </p>
+                <a
+                  href="#"
+                  class="btn cardbtn d-inline-flex align-items-center gap-4 p-3"
+                  >Get Dropbox for work
+                  <ion-icon name="arrow-forward-outline"></ion-icon
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-decor">
+              <img
+                src="/professionals-ui-1272x424.png"
+                class="card-img-top"
+                alt="Card 2"
+              />
+              <div class="card-body p-5">
+                <h5 class="card-title wht fs-3 mb-5 mt-2 fw-normal">
+                  For personal use
+                </h5>
+                <p class="card-text wht fs-6 mb-5">
+                  Keep everything that's important to you and your family
+                  shareable and safe in one place. Back up files in the cloud,
+                  share photos and videos, and more.
+                </p>
+                <a
+                  href="#"
+                  class="btn cardbtn d-inline-flex align-items-center gap-4 p-3"
+                  >Get Dropbox for personal use
+                  <ion-icon name="arrow-forward-outline"></ion-icon
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center p-1 ms-5 mt-5 gap-5">
+            <div class="col-md-7">
+              <div>
+                <h1 class="wht fontsizelastag">
+                  Get organized. Get working. Get Dropbox.
+                </h1>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="d-flex align-items-center p-3">
+                <a
+                  href="#"
+                  class="btn cardbtn d-inline-flex align-items-center gap-4 p-4"
+                  >Start your free trial
+                  <ion-icon name="arrow-forward-outline"></ion-icon
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="container-fluid bg-footer">
+        <div class="row lh-lg p-5">
+          <div class="col-sm-2 p-4">
+            <h5>Dropbox</h5>
+            <ul class="list-unstyled fw-light">
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Desktop app</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Mobile app</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Integrations</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Solutions
+                </a>
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Security</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Early access</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Templates</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Free tools</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-2 p-4">
+            <h5>Product</h5>
+            <ul class="list-unstyled custom-list fw-light">
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Plus</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Professional</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Business</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Enterprise</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Dash (beta)</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Dropbox Sign</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >DocSend</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Plans</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Product updates</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-2 p-4">
+            <h5>Features</h5>
+            <ul class="list-unstyled fw-light">
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Send large files</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Send long videos</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Cloud photo storage</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Secure file transfer</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Password manager</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Cloud backup</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Edit PDFs</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Electronic signatures</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Screen recorder</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Convert to PDF</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-2 p-4">
+            <h5>Support</h5>
+            <ul class="list-unstyled fw-light">
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Help center</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Contact us</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Privacy & terms</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Cookie policy</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Cookies & CCPA preferences</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >AI principles</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Sitemap</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Learning resources</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-2 p-4">
+            <h5>Resources</h5>
+            <ul class="list-unstyled fw-light">
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Customer stories</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Resources library</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Developers</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Community forums</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Referrals</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Reseller partners</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Integration partners</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Fina a partner</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-2 p-4">
+            <h5>Company</h5>
+            <ul class="list-unstyled fw-light">
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >About us</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Jobs</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >Investor relations</a
+                >
+              </li>
+              <li>
+                <a class="text-decoration-none text-reset footer-hvr" href="#"
+                  >ESG</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="socialmedia fs-4">
+            <span><ion-icon class="me-2" name="logo-facebook"></ion-icon></span>
+            <span><ion-icon name="logo-youtube"></ion-icon></span>
+          </div>
+
+          <hr class="custom-hr mt-3" />
+
+          <div class="d-flex align-items-center gap-3 fw-light">
+            <a
+              class="text-decoration-none text-reset footer-hvr d-flex align-items-center gap-1"
+              href="#"
+            >
+              <ion-icon
+                class="fw-bold fsize-globe"
+                name="globe-outline"
+              ></ion-icon>
+              English (United States)</a
+            >
+            <span class="fs-3">></span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
