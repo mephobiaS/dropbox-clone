@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel="icon" type="image/svg+xml" href="/dropbox-1.svg" />
     <link
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.css"
@@ -69,6 +69,43 @@
       .fsize-globe {
         font-size: 20px;
       }
+      /*********************/
+      /* Hide the default radio button */
+      input[type="radio"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #000; /* Outer border */
+        border-radius: 50%;
+        background-color: #fff; /* Outer circle color */
+        cursor: pointer;
+        position: relative;
+      }
+
+      /* Create the black dot inside the radio button when checked */
+      input[type="radio"]::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 11px; /* Size of the inner dot */
+        height: 11px; /* Size of the inner dot */
+        border-radius: 50%;
+        background-color: transparent; /* Start with transparent */
+        transform: translate(-50%, -50%); /* Centered dot */
+      }
+
+      /* Fully fill the radio button with a black dot when checked */
+      input[type="radio"]:checked {
+        background-color: #fff; /* Outer circle color */
+        border-color: #000; /* Border color */
+      }
+
+      input[type="radio"]:checked::after {
+        background-color: #000; /* Inner dot color */
+      }
+
+      /*******************/
       .line-underline {
         text-decoration: underline;
         text-decoration-style: solid;
@@ -78,8 +115,12 @@
       .dashed-underline {
         text-decoration: underline;
         text-decoration-style: dashed;
+        text-decoration-thickness: 0.5px;
         text-underline-offset: 4px;
-        color: #7a7474;
+        color: black;
+      }
+      .allicons {
+        --ionicon-stroke-width: 48px;
       }
       .bg-custom-card1 {
         background-color: #faf9f7;
@@ -138,57 +179,132 @@
         color: #f7f5f2;
         background-color: #242121;
         padding: 90px;
-        position: relative;
+      }
+      .carhead {
+        flex-direction: column;
+        margin-bottom: 40px;
       }
       .carousel {
-        position: relative;
+        width: 100%;
         max-width: 1200px;
-        overflow: visible;
         margin: auto;
       }
-      .item {
-        display: flex;
-        align-items: center;
-        gap: 36px;
-      }
+
       .carousel-inner {
+        position: relative;
         width: 1200px;
         padding: 20px;
         display: flex;
         align-items: center;
+        overflow: hidden;
       }
-      .carousel-1 img {
-        background-color: #b4dc19;
-        padding: 24px;
-        height: 300px;
-        width: 300px;
+      .carousel-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
       }
-      .testimonial-text {
-        font-size: 17px;
-      }
-      .testimonial-position {
-        color: #7a7474;
+      .carousel-item.active {
+        opacity: 1;
+        position: relative; /* Ensures the active slide is placed correctly */
+        z-index: 1; /* Brings the active slide to the top */
       }
 
-      .carousel-control {
-        cursor: pointer;
+      /***carousel buttons**/
+      .navbtn {
+        position: relative;
+        width: 100%;
+      }
+
+      .navbtn button {
         position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #242121;
+        color: #f7f5f2;
         border: none;
-        height: 50px;
-        width: 50px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s;
+      }
+
+      .navbtn button:hover {
+        background-color: #333;
+      }
+      .navbtn button:first-of-type {
+        left: 0;
+      }
+      .navbtn button:last-of-type {
+        right: 0;
+      }
+
+      /******/
+
+      /*slider*/
+
+      .slider-indicator {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 20px;
+        font-size: 18px;
+        color: white;
       }
-      .prev {
-        left: 0;
-        top: 50%;
-        transform: translate(-50%, -50%);
+
+      .slider-indicator button {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 0 10px;
       }
-      .next {
-        right: 0;
-        top: 50%;
-        transform: translate(50%, -50%);
+
+      .slider-indicator span {
+        font-size: 20px;
+        font-weight: bold;
+        color: #7a7474;
+      }
+
+      /*****/
+      .carimg {
+        width: 350px;
+      }
+      .blockquotetext {
+        font-size: 17px;
+      }
+      .carlink {
+        text-decoration: none;
+        text-decoration-line: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 0.5px;
+        text-decoration-color: #5f5b5b;
+        color: white;
+        transition: all 0.3s;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .carlink:hover {
+        text-decoration-color: white;
+      }
+      .carlink ion-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .carlink:hover ion-icon {
+        transform: translateX(5px);
+      }
+
+      .carname {
+        margin-bottom: 0;
+        margin-top: 20px;
+        font-weight: 600;
+      }
+
+      .carrole {
+        color: #999090;
       }
       /*****************/
       .section-card {
@@ -233,8 +349,11 @@
     <header>
       <nav class="navbar p-3 navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand fw-bold fs-4" href="#">
-            <img src="/dropbox-1.svg" alt="Logo" width="40" height="34" />
+          <a
+            class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2"
+            href="#"
+          >
+            <img src="/dropbox-1.svg" alt="Logo" width="34" height="34" />
             Dropbox
           </a>
           <button
@@ -274,7 +393,7 @@
     </header>
 
     <section class="section-hero">
-      <div class="container-fluid mt-5">
+      <div class="container-fluid mt-5" style="padding: 0; width: 100vw">
         <div class="row">
           <div class="col-md-4 hero-text">
             <h1 class="hero-heading">
@@ -333,7 +452,9 @@
             class="form-check-input bg-input"
             type="radio"
             id="option1"
+            name="option"
             value="BilledMonthly"
+            checked
           />
           <label class="form-check-label me-3" for="BilledMonthly">
             Billed Monthly
@@ -344,6 +465,7 @@
             class="form-check-input bg-input"
             type="radio"
             id="option2"
+            name="option"
             value="BilledYearly"
           />
           <label class="form-check-label" for="BilledYearly">
@@ -359,7 +481,7 @@
             <div class="card-body">
               <p>For professionals</p>
               <h5 class="card-title fs-3">Essentials</h5>
-              <h5 class="card-title fs-4">$19.99 / month</h5>
+              <h5 class="card-title fs-4" id="card1bill">$19.99 / month</h5>
               <a
                 href="#"
                 class="d-flex justify-content-between align-items-center btn btn-primary fw-medium mt-3 w-100"
@@ -377,31 +499,40 @@
               </a>
 
               <ul class="list-unstyled lh-lg">
-                <li><ion-icon name="person-outline"></ion-icon> 1 user</li>
                 <li>
-                  <ion-icon name="cloud-outline"></ion-icon>
+                  <ion-icon name="person-outline" class="allicons"></ion-icon> 1
+                  user
+                </li>
+                <li>
+                  <ion-icon name="cloud-outline" class="allicons"></ion-icon>
                   <strong>3TB</strong> of storage
                 </li>
                 <li>
-                  <ion-icon name="paper-plane-outline"></ion-icon> Transfer
-                  files up to <strong>100GB</strong>
+                  <ion-icon
+                    name="paper-plane-outline"
+                    class="allicons"
+                  ></ion-icon>
+                  Transfer files up to <strong>100GB</strong>
                 </li>
                 <li>
-                  <ion-icon name="timer-outline"></ion-icon> 180 days to restore
-                  deleted files
+                  <ion-icon name="timer-outline" class="allicons"></ion-icon>
+                  180 days to restore deleted files
                 </li>
                 <li>
-                  <ion-icon name="document-outline"></ion-icon> Track file
-                  engagement
+                  <ion-icon name="document-outline" class="allicons"></ion-icon>
+                  Track file engagement
                 </li>
                 <li>
-                  <ion-icon name="pencil-outline"></ion-icon> Unlimited
-                  signature requests
+                  <ion-icon name="pencil-outline" class="allicons"></ion-icon>
+                  Unlimited signature requests
                 </li>
-                <li><ion-icon name="create-outline"></ion-icon> PDF editing</li>
                 <li>
-                  <ion-icon name="videocam-outline"></ion-icon> Record, review,
-                  and edit video
+                  <ion-icon name="create-outline" class="allicons"></ion-icon>
+                  PDF editing
+                </li>
+                <li>
+                  <ion-icon name="videocam-outline" class="allicons"></ion-icon>
+                  Record, review, and edit video
                 </li>
               </ul>
             </div>
@@ -418,7 +549,7 @@
             <div class="card-body">
               <p>For smaller teams</p>
               <h5 class="card-title fs-3">Business</h5>
-              <h5 class="card-title fs-4">$18 / user / month</h5>
+              <h5 class="card-title fs-4" id="card2bill">$18 / user / month</h5>
               <a
                 href="#"
                 class="d-flex justify-content-between align-items-center btn btn-primary fw-medium mt-3 w-100"
@@ -436,38 +567,51 @@
               </a>
 
               <ul class="list-unstyled lh-lg">
-                <li><ion-icon name="person-outline"></ion-icon> 3+ user</li>
+                <li>
+                  <ion-icon name="person-outline" class="allicons"></ion-icon>
+                  3+ user
+                </li>
                 <li class="dashed-underline">
-                  <ion-icon name="cloud-outline"></ion-icon> Starts at
-                  <strong>9TB</strong> for the team
+                  <ion-icon name="cloud-outline" class="allicons"></ion-icon>
+                  Starts at <strong>9TB</strong> for the team
                 </li>
                 <li>
-                  <ion-icon name="paper-plane-outline"></ion-icon> Transfer
-                  files up to <strong>100GB</strong>
+                  <ion-icon
+                    name="paper-plane-outline"
+                    class="allicons"
+                  ></ion-icon>
+                  Transfer files up to <strong>100GB</strong>
                 </li>
                 <li>
-                  <ion-icon name="timer-outline"></ion-icon> 180 days to restore
-                  deleted files
+                  <ion-icon name="timer-outline" class="allicons"></ion-icon>
+                  180 days to restore deleted files
                 </li>
                 <li>
-                  <ion-icon name="document-outline"></ion-icon> Track file
-                  engagement
+                  <ion-icon name="document-outline" class="allicons"></ion-icon>
+                  Track file engagement
                 </li>
                 <li>
-                  <ion-icon name="pencil-outline"></ion-icon> Unlimited
-                  signature requests
-                </li>
-                <li><ion-icon name="create-outline"></ion-icon> PDF editing</li>
-                <li>
-                  <ion-icon name="videocam-outline"></ion-icon> Record, review,
-                  and edit video
+                  <ion-icon name="pencil-outline" class="allicons"></ion-icon>
+                  Unlimited signature requests
                 </li>
                 <li>
-                  <ion-icon name="people-outline"></ion-icon> Set up admins
+                  <ion-icon name="create-outline" class="allicons"></ion-icon>
+                  PDF editing
                 </li>
                 <li>
-                  <ion-icon name="shield-checkmark-outline"></ion-icon> Know
-                  what content is shared
+                  <ion-icon name="videocam-outline" class="allicons"></ion-icon>
+                  Record, review, and edit video
+                </li>
+                <li>
+                  <ion-icon name="people-outline" class="allicons"></ion-icon>
+                  Set up admins
+                </li>
+                <li>
+                  <ion-icon
+                    name="shield-checkmark-outline"
+                    class="allicons"
+                  ></ion-icon>
+                  Know what content is shared
                 </li>
               </ul>
             </div>
@@ -479,7 +623,7 @@
             <div class="card-body">
               <p>For large teams</p>
               <h5 class="card-title fs-3">Business Plus</h5>
-              <h5 class="card-title fs-4">$30 /user / month</h5>
+              <h5 class="card-title fs-4" id="card3bill">$30 / user / month</h5>
               <a
                 href="#"
                 class="d-flex justify-content-between align-items-center btn btn-primary fw-medium mt-3 w-100"
@@ -497,42 +641,57 @@
               </a>
 
               <ul class="list-unstyled lh-lg">
-                <li><ion-icon name="person-outline"></ion-icon> 3+ user</li>
+                <li>
+                  <ion-icon name="person-outline" class="allicons"></ion-icon>
+                  3+ user
+                </li>
                 <li class="dashed-underline">
-                  <ion-icon name="cloud-outline"></ion-icon> Starts at
-                  <strong>15TB</strong> for the team
+                  <ion-icon name="cloud-outline" class="allicons"></ion-icon>
+                  Starts at <strong>15TB</strong> for the team
                 </li>
                 <li>
-                  <ion-icon name="paper-plane-outline"></ion-icon> Transfer
-                  files up to <strong>250GB</strong>
+                  <ion-icon
+                    name="paper-plane-outline"
+                    class="allicons"
+                  ></ion-icon>
+                  Transfer files up to <strong>250GB</strong>
                 </li>
                 <li>
-                  <ion-icon name="timer-outline"></ion-icon> 1 year to restore
-                  deleted files
+                  <ion-icon name="timer-outline" class="allicons"></ion-icon> 1
+                  year to restore deleted files
                 </li>
                 <li>
-                  <ion-icon name="document-outline"></ion-icon> Track file
-                  engagement
+                  <ion-icon name="document-outline" class="allicons"></ion-icon>
+                  Track file engagement
                 </li>
                 <li>
-                  <ion-icon name="pencil-outline"></ion-icon> Unlimited
-                  signature requests
-                </li>
-                <li><ion-icon name="create-outline"></ion-icon> PDF editing</li>
-                <li>
-                  <ion-icon name="videocam-outline"></ion-icon> Record, review,
-                  and edit video
+                  <ion-icon name="pencil-outline" class="allicons"></ion-icon>
+                  Unlimited signature requests
                 </li>
                 <li>
-                  <ion-icon name="people-outline"></ion-icon> Set up tiered
-                  admin roles
+                  <ion-icon name="create-outline" class="allicons"></ion-icon>
+                  PDF editing
                 </li>
                 <li>
-                  <ion-icon name="shield-checkmark-outline"></ion-icon>
+                  <ion-icon name="videocam-outline" class="allicons"></ion-icon>
+                  Record, review, and edit video
+                </li>
+                <li>
+                  <ion-icon name="people-outline" class="allicons"></ion-icon>
+                  Set up tiered admin roles
+                </li>
+                <li>
+                  <ion-icon
+                    name="shield-checkmark-outline"
+                    class="allicons"
+                  ></ion-icon>
                   Suspicious activity alerts
                 </li>
                 <li>
-                  <ion-icon name="analytics-outline"></ion-icon>
+                  <ion-icon
+                    name="analytics-outline"
+                    class="allicons"
+                  ></ion-icon>
                   Compliance tracking
                 </li>
               </ul>
@@ -551,7 +710,7 @@
           <div class="col-md-2">
             <div class="mb-3">
               <img
-                src="/ProtectFilesLight.svg"
+                src="/features/ProtectFilesLight.svg"
                 alt="Logo"
                 width="100"
                 height="110"
@@ -567,7 +726,7 @@
           <div class="col-md-2">
             <div class="mb-3">
               <img
-                src="/SharedContentLight.svg"
+                src="/features/SharedContentLight.svg"
                 alt="Logo"
                 width="100"
                 height="110"
@@ -583,7 +742,7 @@
           <div class="col-md-2">
             <div class="mb-3">
               <img
-                src="/CollaborateLight.svg"
+                src="/features/CollaborateLight.svg"
                 alt="Logo"
                 width="100"
                 height="110"
@@ -599,7 +758,7 @@
           <div class="col-md-2">
             <div class="mb-3">
               <img
-                src="/ManageBusinessLight.svg"
+                src="/features/ManageBusinessLight.svg"
                 alt="Logo"
                 width="100"
                 height="110"
@@ -619,32 +778,239 @@
     <section class="section-carousel">
       <div class="container-fluid">
         <div class="carousel">
+          <div class="carhead d-flex align-items-center gap-3">
+            <h1>Over 600,000 teams use Dropbox</h1>
+            <a href="#" class="carlink d-inline-flex align-items-center gap-2"
+              >Learn more about our customers
+              <ion-icon name="arrow-forward-outline"></ion-icon
+            ></a>
+          </div>
           <div class="carousel-inner">
-            <div class="row">
-              <div class="carousel-1 item active">
-                <div class="col-md-4">
-                  <img src="/carousels/designit-logo.svg" alt="design it" />
-                </div>
-                <div class="col-md-8">
-                  <blockquote class="testimonial">
-                    <p class="testimonial-text">
-                      "Our team is constantly working across different
-                      countries, time zones and offices. A lot of solutions can
-                      accommodate that now, but none make it as seamless as
-                      Dropbox and Dropbox Paper".
-                    </p>
-                    <a href="#">View case studies </a>
-                    <p class="testimonial-author">Morten Thomsen</p>
-                    <p class="testimonial-position">Global IT Lead</p>
-                  </blockquote>
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="d-flex gap-5">
+                  <div class="col-md-4 carimgdiv">
+                    <img src="/carousels/designit1.jpg" class="carimg" />
+                  </div>
+
+                  <div class="col-md-8 cartext">
+                    <blockquote>
+                      <p class="blockquotetext">
+                        “Our team is constantly working across different
+                        countries, time zones and offices. A lot of solutions
+                        can accommodate that now, but none make it as seamless
+                        as Dropbox and Dropbox Paper.”
+                      </p>
+                      <a
+                        href="#"
+                        class="carlink d-inline-flex align-items-center gap-2"
+                        >View case studies
+                        <ion-icon name="arrow-forward-outline"></ion-icon
+                      ></a>
+                      <p class="carname">Morten Thomsen</p>
+                      <p class="carrole">Global IT Lead</p>
+                    </blockquote>
+                  </div>
                 </div>
               </div>
             </div>
-            <button class="carousel-control prev" onclick="moveSlide(-1)">
-              <ion-icon class="icon" name="arrow-back-outline"></ion-icon>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="d-flex gap-5">
+                  <div class="col-md-4 carimgdiv">
+                    <img src="/carousels/arizona2.jpg" class="carimg" />
+                  </div>
+
+                  <div class="col-md-8 cartext">
+                    <blockquote>
+                      <p class="blockquotetext">
+                        “With Dropbox, educators can collaborate securely with
+                        colleagues on any device and platform — across campus
+                        and across the world.”
+                      </p>
+                      <p class="carname">Tina Thorstenson</p>
+                      <p class="carrole">CISO</p>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="d-flex gap-5">
+                  <div class="col-md-4 carimgdiv">
+                    <img src="/carousels/worldbicycle3.jpg" class="carimg" />
+                  </div>
+
+                  <div class="col-md-8 cartext">
+                    <blockquote>
+                      <p class="blockquotetext">
+                        “We’re receiving tons of pictures and are constantly
+                        overriding things that couldn’t be managed in email.
+                        Dropbox saves us a huge amount of miscommunication by
+                        allowing the latest versions of documents to be
+                        available to everybody at all times.”
+                      </p>
+
+                      <p class="carname">Andrew Hall</p>
+                      <p class="carrole">Product Manager</p>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="d-flex gap-5">
+                  <div class="col-md-4 carimgdiv">
+                    <img src="/carousels/hearst4.jpg" class="carimg" />
+                  </div>
+
+                  <div class="col-md-8 cartext">
+                    <blockquote>
+                      <p class="blockquotetext">
+                        “Hearst has more than 360 businesses. Dropbox makes a
+                        significant impact by providing a central hub for our
+                        teams to access all of the content they need from
+                        anywhere, on any device. It has completely changed the
+                        way these teams work.”
+                      </p>
+
+                      <p class="carname">Nicole D’Antuono</p>
+                      <p class="carrole">VP of Employee Applications</p>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="d-flex gap-5">
+                  <div class="col-md-4 carimgdiv">
+                    <img src="/carousels/uf5.jpg" class="carimg" />
+                  </div>
+
+                  <div class="col-md-8 cartext">
+                    <blockquote>
+                      <p class="blockquotetext">
+                        “Our users were accomplishing a lot of great work on
+                        Dropbox without any support. Deploying a central account
+                        allowed that great work to continue, uninterrupted, in
+                        the most secure way possible.”
+                      </p>
+                      <a
+                        href="#"
+                        class="carlink d-inline-flex align-items-center gap-2"
+                        >View case studies
+                        <ion-icon name="arrow-forward-outline"></ion-icon
+                      ></a>
+                      <p class="carname">Elias Eldayrie</p>
+                      <p class="carrole">Vice President & CIO</p>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="d-flex gap-5">
+                  <div class="col-md-4 carimgdiv">
+                    <img src="/carousels/topps6.jpg" class="carimg" />
+                  </div>
+
+                  <div class="col-md-8 cartext">
+                    <blockquote>
+                      <p class="blockquotetext">
+                        “We’ve always been a pioneer in the card industry, and
+                        we think of ourselves in the same way in the digital
+                        space. Thankfully, we pretty much have three words
+                        internally that keep us creating great work: ‘It’s on
+                        Dropbox.”
+                      </p>
+
+                      <p class="carname">Chris R. Vaccaro</p>
+                      <p class="carrole">
+                        Director, Live Operations & Editor-in-Chief, Mobile
+                      </p>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="d-flex gap-5">
+                  <div class="col-md-4 carimgdiv">
+                    <img src="/carousels/lonelyplanet7.jpg" class="carimg" />
+                  </div>
+
+                  <div class="col-md-8 cartext">
+                    <blockquote>
+                      <p class="blockquotetext">
+                        “We’ve always had a global presence, but before Dropbox,
+                        we couldn’t be as spread out as we are now. Dropbox
+                        makes our employees feel like they’re all in the same
+                        office.”
+                      </p>
+
+                      <p class="carname">Daniel Jiménez</p>
+                      <p class="carrole">Head of Mobile Product & Design</p>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="d-flex gap-5">
+                  <div class="col-md-4 carimgdiv">
+                    <img src="/carousels/clearchannel8.jpg" class="carimg" />
+                  </div>
+
+                  <div class="col-md-8 cartext">
+                    <blockquote>
+                      <p class="blockquotetext">
+                        “We strive to create a world-class work environment with
+                        the top technologies available. We’ve achieved a return
+                        on investment of over 500% with Dropbox, while taking a
+                        giant step to modernize our IT strategy and enhance
+                        collaboration across our company.”
+                      </p>
+
+                      <p class="carname">Nichole Boatsman</p>
+                      <p class="carrole">IT Director</p>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="navbtn">
+            <button onclick="prev()">
+              <ion-icon class="fs-3" name="arrow-back-outline"></ion-icon>
             </button>
-            <button class="carousel-control next" onclick="moveSlide(1)">
-              <ion-icon class="icon" name="arrow-forward-outline"></ion-icon>
+            <button onclick="next()">
+              <ion-icon class="fs-3" name="arrow-forward-outline"></ion-icon>
+            </button>
+          </div>
+
+          <div class="slider-indicator">
+            <button onclick="prev()">
+              <ion-icon class="fs-5" name="chevron-back-outline"></ion-icon>
+            </button>
+            <span id="slide-number">01</span>
+            <span> / </span>
+            <span id="total-slides">08</span>
+            <button onclick="next()">
+              <ion-icon class="fs-5" name="chevron-forward-outline"></ion-icon>
             </button>
           </div>
         </div>
@@ -657,7 +1023,7 @@
           <div class="col-md-6">
             <div class="card card-decor">
               <img
-                src="/teams-ui-1272x424.png"
+                src="/card/teams-ui-1272x424.png"
                 class="card-img-top"
                 alt="Card 1"
               />
@@ -681,7 +1047,7 @@
           <div class="col-md-6">
             <div class="card card-decor">
               <img
-                src="/professionals-ui-1272x424.png"
+                src="/card/professionals-ui-1272x424.png"
                 class="card-img-top"
                 alt="Card 2"
               />
@@ -1026,6 +1392,7 @@
         </div>
       </div>
     </footer>
+    <script src="script.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
